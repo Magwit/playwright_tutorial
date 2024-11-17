@@ -6,11 +6,11 @@ def run(playwright: Playwright) -> None:
     context = browser.new_context()
     page = context.new_page()
     page.goto("https://symonstorozhenko.wixsite.com/website-1")
-    # page.pause()
     page.wait_for_load_state("networkidle")
     page.get_by_role("button", name="Log In").click()
-    page.wait_for_load_state("networkidle")
+    page.wait_for_load_state("load")
     page.get_by_test_id("signUp.switchToSignUp").click()
+    page.pause()
     page.get_by_role("button", name="Log in with Email").click()
     page.get_by_test_id("emailAuth").get_by_label("Email").fill(
         "bob.dobbs@fakemail.com"
