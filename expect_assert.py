@@ -1,4 +1,4 @@
-from playwright.sync_api import Playwright, sync_playwright
+from playwright.sync_api import Playwright, sync_playwright, expect
 
 
 def run(playwright: Playwright) -> None:
@@ -6,9 +6,8 @@ def run(playwright: Playwright) -> None:
     context = browser.new_context()
     page = context.new_page()
     page.goto("https://symonstorozhenko.wixsite.com/website-1")
-    page.get_by_text("Shop Women", exact=True).click()
-    # Alternative by index
-    # page.get_by_text("Shop Women").nth(0)
+    expect(page.get_by_text("Celebrating Beauty and Style")).to_be_visible()
+
 
     # ---------------------
     context.close()
